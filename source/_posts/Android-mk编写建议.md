@@ -26,7 +26,7 @@ LOCAL_SHARED_LIBRARIES      := [depended module name]
 LOCAL_LDLIBS                := [ld libs]
 LOCAL_LDFLAGS               := [ld flags]
 
-# 可选填，依据需要填写。此部分是导出项，我们要利用的就是这( ^_^ )
+# 可选项，依据需要填写。此部分是导出项，我们要利用的就是这( ^_^ )
 LOCAL_EXPORT_C_INCLUDES     := [header file path] 
 LOCAL_EXPORT_CFLAGS         := [c flags]
 LOCAL_EXPORT_LDLIBS         := [ld libs] 
