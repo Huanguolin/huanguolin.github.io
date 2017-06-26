@@ -44,8 +44,7 @@ include $(PREBUILT_STATIC_LIBRARY)
 (1) `ndk-build` 会自动推导头文件，源文件所在的路径都将作为头文件搜索路径，可以使用 `LOCAL_C_INCLUDES` 添加其他路径；  
 (2) `*_LDLIBS` 填写示例：`-lz –ldl`。**注意**：`-lpthread`,`–lm`,`–lrt`不需要填写，Android 下会自动链接；     
 (3) `LOCAL_SRC_FILES` 默认从`$(LOCAL_PATH)`开始，通常只需列出源文件，如 `foo.c main.c`; 在使用预编译时要写对应的库名，如 `libfoo.a` 或者 `libfoo.so`；  
-(4) 一个 Android.mk 可以含多个模块。一个模块的内容从
-`include $(CLEAR_VARS)` 开始，到定义编译输出结束。所以一个模块的内容务必夹在二者之间。此时，以上通用格式的第一行内容务必作为整个文件的开始,且后续不需要再写它；    
+(4) 一个 Android.mk 可以含多个模块。一个模块的内容从 `include $(CLEAR_VARS)` 开始，到定义编译输出结束。所以一个模块的内容务必夹在二者之间。此时，以上通用格式的第一行内容务必作为整个文件的开始,且后续不需要再写它；    
 (5) Android.mk 是一种形式化的 makefile。因而也可以自定义变量，使用 makefile 的内置函数等，这些不受以上说明约束，不过最好参考 [NDK 的建议](https://developer.android.com/ndk/guides/android_mk.html#var)。
 
 
@@ -119,5 +118,5 @@ include $(BUILD_STATIC_LIBRARY)
 ## 3. 总结  
 
 编写 Android.mk 的原则：   
-(1)	保持内聚，简单引用。尽量使用被依赖的导出。  
+(1)	保持内聚，简单引用。尽量使用导出功能。  
 (2)	不添加不必要的依赖，保持干净！
