@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android makefile Android.mk," />
 
 
 
@@ -95,15 +95,17 @@
 
 
 
-<meta name="description" content="Programer (front-end newbie &amp; linux c).">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alvin Huang&#39;s Blog">
-<meta property="og:url" content="https://huanguolin.github.io/index.html">
+<meta name="description" content="最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 NDK 的基本使用。其中就有 Android.mk 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总">
+<meta name="keywords" content="Android makefile Android.mk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android.mk编写建议">
+<meta property="og:url" content="https://huanguolin.github.io/2017/06/26/Android-mk编写建议/index.html">
 <meta property="og:site_name" content="Alvin Huang&#39;s Blog">
-<meta property="og:description" content="Programer (front-end newbie &amp; linux c).">
+<meta property="og:description" content="最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 NDK 的基本使用。其中就有 Android.mk 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总">
+<meta property="og:updated_time" content="2017-06-26T13:55:10.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alvin Huang&#39;s Blog">
-<meta name="twitter:description" content="Programer (front-end newbie &amp; linux c).">
+<meta name="twitter:title" content="Android.mk编写建议">
+<meta name="twitter:description" content="最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 NDK 的基本使用。其中就有 Android.mk 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总">
 
 
 
@@ -131,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://huanguolin.github.io/"/>
+  <link rel="canonical" href="https://huanguolin.github.io/2017/06/26/Android-mk编写建议/"/>
 
 
 
 
 
-  <title>Alvin Huang's Blog</title>
+  <title>Android.mk编写建议 | Alvin Huang's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,9 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,9 +258,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -286,9 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/26/Android-mk编写建议/" itemprop="url">Android.mk编写建议</a></h1>
+          <h1 class="post-title" itemprop="name headline">Android.mk编写建议</h1>
         
 
         <div class="post-meta">
@@ -357,9 +355,7 @@
       
 
       
-        
-          
-            <p>最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 <a href="https://developer.android.com/ndk/guides/index.html" target="_blank" rel="external">NDK</a> 的基本使用。其中就有 <a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a> 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总结。</p>
+        <p>最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 <a href="https://developer.android.com/ndk/guides/index.html" target="_blank" rel="external">NDK</a> 的基本使用。其中就有 <a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a> 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总结。</p>
 <h2 id="1-通用基本格式"><a href="#1-通用基本格式" class="headerlink" title="1. 通用基本格式"></a>1. 通用基本格式</h2><p>这里是一个通用格式，大部分的 Android.mk 都可以按照这个格式来编写的。我所说的推荐格式当然也是符合这个格式的，当然要遵守人家的标准嘛 O(∩_∩)O~~</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 必选项，都需要填写。此部分定义了模块必备信息</span></div><div class="line">LOCAL_PATH                  := <span class="variable">$(<span class="built_in">call</span> my-<span class="built_in">dir</span>)</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(CLEAR_VARS)</span></div><div class="line">LOCAL_MODULE                := (name)</div><div class="line">LOCAL_SRC_FILES             := (source file list)</div><div class="line"></div><div class="line"><span class="comment"># 可选项，依据需要填写。此部分是模块的依赖项</span></div><div class="line">LOCAL_C_INCLUDES            := [header file path]</div><div class="line">LOCAL_CFLAGS                := [c flags]</div><div class="line">LOCAL_STATIC_LIBRARIES      := [depended module name] </div><div class="line">LOCAL_SHARED_LIBRARIES      := [depended module name]</div><div class="line">LOCAL_LDLIBS                := [ld libs]</div><div class="line">LOCAL_LDFLAGS               := [ld flags]</div><div class="line"></div><div class="line"><span class="comment"># 可选项，依据需要填写。此部分是导出项，我们要利用的就是这( ^_^ )</span></div><div class="line">LOCAL_EXPORT_C_INCLUDES     := [header file path] </div><div class="line">LOCAL_EXPORT_CFLAGS         := [c flags]</div><div class="line">LOCAL_EXPORT_LDLIBS         := [ld libs] </div><div class="line">LOCAL_EXPORT_LDFLAGS        := [ld flags]</div><div class="line"></div><div class="line"><span class="comment"># 必选项，但只能选下列之一。此部分定义了模块的编译输出</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_EXECUTABLE)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_STATIC_LIBRARY)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_SHARED_LIBRARY)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(PREBUILT_SHARED_LIBRARY)</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(PREBUILT_STATIC_LIBRARY)</span></div></pre></td></tr></table></figure>
 <p>说明：<br>(1) <code>ndk-build</code> 会自动推导头文件，源文件所在的路径都将作为头文件搜索路径，可以使用 <code>LOCAL_C_INCLUDES</code> 添加其他路径；<br>(2) <code>*_LDLIBS</code> 填写示例：<code>-lz –ldl</code>。<strong>注意</strong>：<code>-lpthread</code>,<code>–lm</code>,<code>–lrt</code>不需要填写，Android 下会自动链接；<br>(3) <code>LOCAL_SRC_FILES</code> 默认从<code>$(LOCAL_PATH)</code>开始，通常只需列出源文件，如 <code>foo.c main.c</code>; 在使用预编译时要写对应的库名，如 <code>libfoo.a</code> 或者 <code>libfoo.so</code>；<br>(4) 一个 Android.mk 可以含多个模块。一个模块的内容从 <code>include $(CLEAR_VARS)</code> 开始，到定义编译输出结束。所以一个模块的内容务必夹在二者之间。此时，以上通用格式的第一行内容务必作为整个文件的开始,且后续不需要再写它；<br>(5) Android.mk 是一种形式化的 makefile。因而也可以自定义变量，使用 makefile 的内置函数等，这些不受以上说明约束，不过最好参考 <a href="https://developer.android.com/ndk/guides/android_mk.html#var" target="_blank" rel="external">NDK 的建议</a>。</p>
@@ -372,42 +368,56 @@
 <p>另外说一点，写依赖项时，务必保持 “干净”。 即不要添加不需要的项。   </p>
 <h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>编写 Android.mk 的原则：<br>(1)    保持内聚，简单引用。尽量使用导出功能。<br>(2)    不添加不必要的依赖，保持干净！</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android-makefile-Android-mk/" rel="tag"># Android makefile Android.mk</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -415,6 +425,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -434,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -510,6 +533,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-通用基本格式"><span class="nav-number">1.</span> <span class="nav-text">1. 通用基本格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-推荐写法"><span class="nav-number">2.</span> <span class="nav-text">2. 推荐写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-普通写法"><span class="nav-number">2.1.</span> <span class="nav-text">1) 普通写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-推荐写法-1"><span class="nav-number">2.2.</span> <span class="nav-text">2) 推荐写法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">3.</span> <span class="nav-text">3. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -623,10 +662,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
