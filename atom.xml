@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://huanguolin.github.io/"/>
-  <updated>2017-06-26T13:55:10.956Z</updated>
+  <updated>2017-12-17T12:34:30.880Z</updated>
   <id>https://huanguolin.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://huanguolin.github.io/2017/06/26/Android-mk%E7%BC%96%E5%86%99%E5%BB%BA%E8%AE%AE/"/>
     <id>https://huanguolin.github.io/2017/06/26/Android-mk编写建议/</id>
     <published>2017-06-26T00:11:58.000Z</published>
-    <updated>2017-06-26T13:55:10.956Z</updated>
+    <updated>2017-12-17T12:34:30.880Z</updated>
     
     <content type="html"><![CDATA[<p>最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 <a href="https://developer.android.com/ndk/guides/index.html" target="_blank" rel="external">NDK</a> 的基本使用。其中就有 <a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a> 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总结。</p>
 <h2 id="1-通用基本格式"><a href="#1-通用基本格式" class="headerlink" title="1. 通用基本格式"></a>1. 通用基本格式</h2><p>这里是一个通用格式，大部分的 Android.mk 都可以按照这个格式来编写的。我所说的推荐格式当然也是符合这个格式的，当然要遵守人家的标准嘛 O(∩_∩)O~~</p>
@@ -45,7 +45,7 @@
       <category term="Android" scheme="https://huanguolin.github.io/categories/Android/"/>
     
     
-      <category term="Android makefile Android.mk" scheme="https://huanguolin.github.io/tags/Android-makefile-Android-mk/"/>
+      <category term="Android.mk" scheme="https://huanguolin.github.io/tags/Android-mk/"/>
     
   </entry>
   
