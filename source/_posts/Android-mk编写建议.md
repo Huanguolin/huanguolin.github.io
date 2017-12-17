@@ -1,7 +1,7 @@
 ---
 title: Android.mk编写建议
 categories: Android
-tags: Android makefile Android.mk
+tags: Android.mk
 date: 2017-06-26 08:11:58
 updated: 
 ---
