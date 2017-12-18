@@ -8,6 +8,7 @@ updated:
 
 最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 [NDK](https://developer.android.com/ndk/guides/index.html) 的基本使用。其中就有 [Android.mk](https://developer.android.com/ndk/guides/android_mk.html) 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总结。
 
+<!-- more -->
 
 ## 1. 通用基本格式
 

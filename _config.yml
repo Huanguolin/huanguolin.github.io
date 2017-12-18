@@ -71,3 +71,7 @@ deploy:
   type: git
   repository: git@github.com:huanguolin/huanguolin.github.io.git
   branch: master
+
+# Social links
+social:
+  GitHub: https://github.com/huanguolin
