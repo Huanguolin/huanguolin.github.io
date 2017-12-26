@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Alvin Huang&#39;s Blog">
 <meta property="og:description" content="最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 NDK 的基本使用。其中就有 Android.mk 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-17T12:34:30.880Z">
+<meta property="og:updated_time" content="2017-12-18T13:36:10.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android.mk编写建议">
 <meta name="twitter:description" content="最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 NDK 的基本使用。其中就有 Android.mk 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总">
@@ -115,7 +115,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -166,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -315,8 +315,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-12-17T20:34:30+08:00">
-                2017-12-17
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-18T21:36:10+08:00">
+                2017-12-18
               </time>
             
           </span>
@@ -380,6 +380,7 @@
 
       
         <p>最近要将一个 C/C++ 程序移植到 Android 平台，所以学习了 <a href="https://developer.android.com/ndk/guides/index.html" target="_blank" rel="noopener">NDK</a> 的基本使用。其中就有 <a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="noopener">Android.mk</a> 的编写。这里记录下我个人推荐的一个编写形式，这种形式推崇使用 Android.mk 的导出功能，使得模块依赖的处理更加简洁便利。本文主要分三个部分，第一部分描述 Android.mk 的基本结构，通用格式；第二部分通过举例描述推荐写法，并与普通写法作对比；最后一部分做简单的总结。</p>
+<a id="more"></a>
 <h2 id="1-通用基本格式"><a href="#1-通用基本格式" class="headerlink" title="1. 通用基本格式"></a>1. 通用基本格式</h2><p>这里是一个通用格式，大部分的 Android.mk 都可以按照这个格式来编写的。我所说的推荐格式当然也是符合这个格式的，当然要遵守人家的标准嘛 O(∩_∩)O~~</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 必选项，都需要填写。此部分定义了模块必备信息</span></div><div class="line">LOCAL_PATH                  := <span class="variable">$(<span class="built_in">call</span> my-<span class="built_in">dir</span>)</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(CLEAR_VARS)</span></div><div class="line">LOCAL_MODULE                := (name)</div><div class="line">LOCAL_SRC_FILES             := (source file list)</div><div class="line"></div><div class="line"><span class="comment"># 可选项，依据需要填写。此部分是模块的依赖项</span></div><div class="line">LOCAL_C_INCLUDES            := [header file path]</div><div class="line">LOCAL_CFLAGS                := [c flags]</div><div class="line">LOCAL_STATIC_LIBRARIES      := [depended module name] </div><div class="line">LOCAL_SHARED_LIBRARIES      := [depended module name]</div><div class="line">LOCAL_LDLIBS                := [ld libs]</div><div class="line">LOCAL_LDFLAGS               := [ld flags]</div><div class="line"></div><div class="line"><span class="comment"># 可选项，依据需要填写。此部分是导出项，我们要利用的就是这( ^_^ )</span></div><div class="line">LOCAL_EXPORT_C_INCLUDES     := [header file path] </div><div class="line">LOCAL_EXPORT_CFLAGS         := [c flags]</div><div class="line">LOCAL_EXPORT_LDLIBS         := [ld libs] </div><div class="line">LOCAL_EXPORT_LDFLAGS        := [ld flags]</div><div class="line"></div><div class="line"><span class="comment"># 必选项，但只能选下列之一。此部分定义了模块的编译输出</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_EXECUTABLE)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_STATIC_LIBRARY)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(BUILD_SHARED_LIBRARY)</span> </div><div class="line"><span class="keyword">include</span> <span class="variable">$(PREBUILT_SHARED_LIBRARY)</span></div><div class="line"><span class="keyword">include</span> <span class="variable">$(PREBUILT_STATIC_LIBRARY)</span></div></pre></td></tr></table></figure>
 <p>说明：<br>(1) <code>ndk-build</code> 会自动推导头文件，源文件所在的路径都将作为头文件搜索路径，可以使用 <code>LOCAL_C_INCLUDES</code> 添加其他路径；<br>(2) <code>*_LDLIBS</code> 填写示例：<code>-lz –ldl</code>。<strong>注意</strong>：<code>-lpthread</code>,<code>–lm</code>,<code>–lrt</code>不需要填写，Android 下会自动链接；<br>(3) <code>LOCAL_SRC_FILES</code> 默认从<code>$(LOCAL_PATH)</code>开始，通常只需列出源文件，如 <code>foo.c main.c</code>; 在使用预编译时要写对应的库名，如 <code>libfoo.a</code> 或者 <code>libfoo.so</code>；<br>(4) 一个 Android.mk 可以含多个模块。一个模块的内容从 <code>include $(CLEAR_VARS)</code> 开始，到定义编译输出结束。所以一个模块的内容务必夹在二者之间。此时，以上通用格式的第一行内容务必作为整个文件的开始,且后续不需要再写它；<br>(5) Android.mk 是一种形式化的 makefile。因而也可以自定义变量，使用 makefile 的内置函数等，这些不受以上说明约束，不过最好参考 <a href="https://developer.android.com/ndk/guides/android_mk.html#var" target="_blank" rel="noopener">NDK 的建议</a>。</p>
@@ -429,6 +430,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/25/2017总结-md/" rel="prev" title="2017总结.md">
+                2017总结.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -504,7 +521,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -515,7 +532,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -526,7 +543,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -544,6 +561,17 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huanguolin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
